@@ -62,7 +62,6 @@ const keyPress = e => {
   // 正タイプのとき
   // wrap.classList.remove('mistyped'); //NGの装飾を削除(remove)
   score++;  // スコアのインクリメント
-  typed += untyped.substring(0, 1); // 先頭1字をtypedに移動
   untyped = untyped.substring(1); //未入力の文字を全て抽出
   typedfield.textContent = typed;
   untypedfield.textContent = untyped;
