@@ -3,13 +3,13 @@ let untyped = '';  // 未入力の文字列を入れた変数
 let typed = '';  // 入力済の文字列を入れた変数
 let score = 0;  // スコアの初期値
 
-
 // 必要なHTML要素の取得
 const untypedfield = document.getElementById('untyped');
 const typedfield = document.getElementById('typed');
 const wrap = document.getElementById('wrap');
 const start = document.getElementById('start');
 const count = document.getElementById('count');
+const typingCountfield = document.getElementById('typingcount');
 
 
 // 複数のテキストを格納する配列
@@ -60,15 +60,13 @@ const keyPress = e => {
   }
 
   // 正タイプのとき
-  // wrap.classList.remove('mistyped'); //NGの装飾を削除(remove)
   score++;  // スコアのインクリメント
+  // カウントした正タイプ数(=score)を表示する
+  typingCountfield.textContent = score;
   typed += untyped.substring(0, 1); // 先頭1字をtypedに移動
   untyped = untyped.substring(1); //未入力の文字を全て抽出
   typedfield.textContent = typed;
   untypedfield.textContent = untyped;
-  // substring(開始index, 終了index(=省略時:開始index以降の全ての文字列を抽出する)
-  // 未入力の文字列の1文字目をtyped(入力済の文字を入れた変数)に追加
-  // これを繰り返して、未入力の文字列から1文字ずつ入力済に移動する
 
   // 全て入力済みになったら新しいテキスト（createText）を表示
   if (untyped === '') {
@@ -128,9 +126,7 @@ const timer = () => {
       gameOver(id);
     }
   }, 1000);
-
 };
-
 
 
 // ゲームスタート時の処理（スタートボタンを'クリック'）
